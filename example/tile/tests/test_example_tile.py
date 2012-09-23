@@ -14,13 +14,21 @@ class ExampleTileIntegrationTest(unittest.TestCase):
 
     def setUp(self):
         self.portal = self.layer['portal']
+        self.request = self.layer['request']
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
         login(self.portal, TEST_USER_NAME)
         self.portal.invokeFactory('Document', 'doc')
         self.doc = self.portal.doc
 
-    def test_pass(self):
-        pass
+    def test_tile_exists(self):
+        from example.tile.tile import ExampleTile
+        self.assertTrue(ExampleTile(self.portal, self.request))
+
+    def test_file_rendering(self):
+        from example.tile.tile import ExampleTile
+        self.assertEqual(
+            ExampleTile(self.portal, self.request)(),
+            u"<html><body><p>Hello world</p></body></html>")
 
 #    def test_tile_registration(self):
 #        tile = queryUtility(ITileType, name='example.tile')
