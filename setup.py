@@ -26,6 +26,7 @@ setup(name='example.tile',
       install_requires=[
           'setuptools',
           'plone.tiles',
+          'plone.app.tiles',
       ],
       extras_require={
           'test': [

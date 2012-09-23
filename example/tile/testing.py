@@ -5,6 +5,7 @@ from zope.configuration import xmlconfig
 from plone.testing import z2
 
 from plone.app.testing import PloneSandboxLayer
+from plone.app.testing import applyProfile
 from plone.app.testing.layers import FunctionalTesting
 from plone.app.testing.layers import IntegrationTesting
 
@@ -15,7 +16,9 @@ class ExampleTileLayer(PloneSandboxLayer):
         import example.tile
         xmlconfig.file('configure.zcml', example.tile,
                        context=configurationContext)
-        z2.installProduct(app, 'example.tile')
+
+    def setUpPloneSite(self, portal):
+        applyProfile(portal, 'example.tile:default')
 
 
 EXAMPLE_TILE_FIXTURE = ExampleTileLayer()

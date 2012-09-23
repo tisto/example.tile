@@ -18,4 +18,12 @@
         layer="*"
         />
 
+    <genericsetup:registerProfile
+        name="default"
+        title="Example tile"
+        description="An example tile."
+        directory="profiles/default"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
 </configure>
