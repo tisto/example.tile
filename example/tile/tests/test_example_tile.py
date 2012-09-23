@@ -6,6 +6,7 @@ import unittest2 as unittest
 
 from plone.app.testing import TEST_USER_ID, TEST_USER_NAME, \
     setRoles, login
+from plone.registry.interfaces import IRegistry
 
 from example.tile.testing import \
     EXAMPLE_TILE_INTEGRATION_TESTING
@@ -33,7 +34,7 @@ class ExampleTileIntegrationTest(unittest.TestCase):
             ExampleTile(self.portal, self.request)(),
             u"<html><body><p>Hello world</p></body></html>")
 
-    def test_tile_registration(self):
+    def test_tiletype_registration(self):
         self.assertTrue(queryUtility(ITileType, name='example.tile'))
         self.assertEqual(
             queryUtility(ITileType, name='example.tile').title,
@@ -41,6 +42,10 @@ class ExampleTileIntegrationTest(unittest.TestCase):
         self.assertEqual(
             queryUtility(ITileType, name='example.tile').description,
             "This is an example tile")
+
+    def test_tile_registration(self):
+        registry = queryUtility(IRegistry)
+        self.assertTrue(u'example.tile' in registry['plone.app.tiles'])
 
 
 def test_suite():
