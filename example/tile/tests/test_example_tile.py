@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+from zope.component import queryUtility
+#from plone.app.texttile.tile import ITextTile
+from plone.tiles.interfaces import ITileType
 import unittest2 as unittest
 
 from plone.app.testing import TEST_USER_ID, TEST_USER_NAME, \
@@ -30,10 +33,14 @@ class ExampleTileIntegrationTest(unittest.TestCase):
             ExampleTile(self.portal, self.request)(),
             u"<html><body><p>Hello world</p></body></html>")
 
-#    def test_tile_registration(self):
-#        tile = queryUtility(ITileType, name='example.tile')
-#        self.assertEqual(tile.title, u"Text tile")
-#        self.assertEqual(tile.schema, ITextTile)
+    def test_tile_registration(self):
+        self.assertTrue(queryUtility(ITileType, name='example.tile'))
+        self.assertEqual(
+            queryUtility(ITileType, name='example.tile').title,
+            "Example tile")
+        self.assertEqual(
+            queryUtility(ITileType, name='example.tile').description,
+            "This is an example tile")
 
 
 def test_suite():
