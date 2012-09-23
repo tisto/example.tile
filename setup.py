@@ -15,9 +15,9 @@ setup(name='example.tile',
         "Programming Language :: Python",
         ],
       keywords='',
-      author='',
-      author_email='',
-      url='http://svn.plone.org/svn/collective/',
+      author='Timo Stollenwerk',
+      author_email='timo@zmag.de',
+      url='',
       license='GPL',
       packages=find_packages(exclude=['ez_setup']),
       namespace_packages=['example'],
@@ -27,6 +27,11 @@ setup(name='example.tile',
           'setuptools',
           # -*- Extra requirements: -*-
       ],
+      extras_require={
+          'test': [
+              'plone.app.testing',
+           ],
+      },
       entry_points="""
       # -*- Entry points: -*-
 
