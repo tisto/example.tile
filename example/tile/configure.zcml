@@ -11,7 +11,7 @@
         name="example.tile"
         title="Example tile"
         description="This is an example tile"
-        add_permission="zope2.View"
+        add_permission="plone.app.tiles.AddTile"
         class=".tile.ExampleTile"
         permission="zope.Public"
         for="*"
